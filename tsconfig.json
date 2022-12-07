@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noImplicitAny": false,
+
+    "baseUrl": ".",
+    "paths": {
+      "@images/*": ["./src/assets/images/*"],
+      "@layout/*": ["./src/components/layout/*"],
+      "@icons/*": ["./src/components/ui-assets/icons/*"],
+      "@ui-assets/*": ["./src/components/ui-assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@react-tournament-brackets/*": ["./src/react-tournament-brackets/*"],
+
+      "Atoms/*": ["./src/react-tournament-brackets/src/atoms/*"],
+      "Components/*": ["./src/react-tournament-brackets/src/components/*"],
+      "Core/*": ["./src/react-tournament-brackets/src/core/*"],
+      "Hooks/*": ["./src/react-tournament-brackets/src/hooks/*"],
+      "Services/*": ["./src/react-tournament-brackets/src/services/*"],
+      "Stories/*": ["./src/react-tournament-brackets/src/stories/*"],
+      "Themes/*": ["./src/react-tournament-brackets/src/themes/*"],
+      "Styles/*": ["./src/react-tournament-brackets/src/styles/*"],
+      "Utils/*": ["./src/react-tournament-brackets/src/utils/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/hooks/useScrollLock.ts"
+  ],
+  "exclude": ["node_modules", "./src/react-tournament-brackets"],
+  "excludeFiles": ["./src/react-tournament-brackets/src/**/*"]
+}
