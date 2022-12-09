@@ -6,6 +6,7 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import { useGetHomeQuery } from "src/store/homeApi";
 
+import Layout from "@components/layout/Layout";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -24,6 +25,10 @@ const Home: NextPageWithLayout<{}> = () => {
       <main className=" ">{`${home.data}`}</main>
     </div>
   );
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Home;

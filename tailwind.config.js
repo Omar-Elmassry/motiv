@@ -9,13 +9,19 @@ module.exports = {
         darkGrey: {
           DEFAULT: "#1F1F1F",
         },
+        greyBrand: {
+          DEFAULT: "#F5F5F5",
+          "500":"#5F6165"
+        },
+        brand: {
+          DEFAULT: "#A162F7",
+        },
       },
       fontFamily: {
         vq: '"Speed Rush Regular", sans-serif',
       },
       animation: {
         tilt: "tilt 10s infinite linear",
-       
       },
       keyframes: {
         tilt: {

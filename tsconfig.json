@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@images/*": ["./src/assets/images/*"],
+      "@PubImages/*": ["./public/images/*"],
       "@layout/*": ["./src/components/layout/*"],
       "@icons/*": ["./src/components/ui-assets/icons/*"],
       "@ui-assets/*": ["./src/components/ui-assets/*"],

@@ -2,16 +2,18 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { homeApi } from "./homeApi";
 
+import utilsReducer from "./utilsSlice";
+
 // import { rtkQueryErrorLogger } from "./middleware/RTKErrorLogger";
 
 const store = configureStore({
   reducer: {
+    utils: utilsReducer,
     [homeApi.reducerPath]: homeApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(homeApi.middleware)
-      // .concat(rtkQueryErrorLogger),
+    getDefaultMiddleware().concat(homeApi.middleware),
+  // .concat(rtkQueryErrorLogger),
 });
 
 export type AppDispatch = typeof store.dispatch;

@@ -6,12 +6,11 @@ import { ReactElement, ReactNode, useEffect } from "react";
 import { Provider } from "react-redux";
 
 import store from "src/store";
-// import AppUtils from "./AppUtils";
+import AppUtils from "./AppUtils";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import "src/styles/globals.css";
-
 
 export type NextPageWithLayout<Props> = NextPage<Props> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -37,7 +36,7 @@ function App({ Component, pageProps, router, ...rest }: AppPropsWithLayout) {
       <Provider store={store}>
         {getLayout(
           <>
-            {/* <AppUtils /> */}
+            <AppUtils />
             <Component {...pageProps} />
           </>
         )}

@@ -11,11 +11,28 @@ export const homeApi = createApi({
   tagTypes: ["home"],
 
   endpoints: ({ query, mutation }) => ({
-    getHome: query<any, void>({
-      query: () => "/test",
+    getStats: query<any, void>({
+      query: () => "/stats",
+      providesTags: ["home"],
+    }),
+    getAds: query<any, void>({
+      query: () => "/ads",
+      providesTags: ["home"],
+    }),
+    getCars: query<any, void>({
+      query: () => "/cars",
+      providesTags: ["home"],
+    }),
+    bestSellingCars: query<any, void>({
+      query: () => "/best-selling",
       providesTags: ["home"],
     }),
   }),
 });
 
-export const { useGetHomeQuery } = homeApi;
+export const {
+  useGetAdsQuery,
+  useGetStatsQuery,
+  useGetCarsQuery,
+  useBestSellingCarsQuery,
+} = homeApi;

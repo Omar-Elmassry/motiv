@@ -7,7 +7,7 @@ const nextConfig = {
   swcMinify: false,
   images: {
     domains: [
-      "vq"
+      "bricks.axudastudio.com"
     ],
   },
   
