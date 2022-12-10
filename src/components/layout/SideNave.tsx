@@ -21,7 +21,6 @@ export default function SideNave({}: Props) {
   const t = useTranslation().t;
 
   const router = useRouter();
-  console.log("🚀 ~ file: SideNave.tsx:24 ~ SideNave ~ router", router);
   const { pathname, asPath, query } = router;
 
   const dispatch = useDispatch();
@@ -53,6 +52,7 @@ export default function SideNave({}: Props) {
   };
 
   const handleLanguageChange = async () => {
+    dispatch(utilsActions.setMenuOpened(false));
     setCookie("NEXT_LOCALE", router.locale === "en" ? "ar" : "en");
     await router.push({ pathname, query }, asPath, {
       locale: router.locale === "en" ? "ar" : "en",
@@ -77,6 +77,9 @@ export default function SideNave({}: Props) {
               className={`rounded-md  p-2 ${
                 router.pathname === link.href ? "bg-greyBrand" : ""
               }`}
+              onClick={() => {
+                dispatch(utilsActions.setMenuOpened(false));
+              }}
             >
               <Link key={`${index} ${link.href}`} href={`/${link.href}`}>
                 <a className="flex items-center gap-2">
@@ -105,6 +108,9 @@ export default function SideNave({}: Props) {
               className={`rounded-md  p-2 ${
                 router.pathname === link.href ? "bg-greyBrand" : ""
               }`}
+              onClick={() => {
+                dispatch(utilsActions.setMenuOpened(false));
+              }}
             >
               <Link key={`${index} ${link.href}`} href={`${link.href}`}>
                 <a className="flex items-center gap-2">

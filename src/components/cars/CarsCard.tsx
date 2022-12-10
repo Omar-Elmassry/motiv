@@ -52,8 +52,8 @@ export default function CarCard({ data }: Props) {
           </div>
           <div className="flex items-center gap-2">
             <Image
-              src="/images/bestSelling/vector.svg"
-              alt="vector"
+              src="/images/bestSelling/retweet.svg"
+              alt="retweet"
               width={16}
               height={16}
             />

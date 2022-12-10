@@ -4,8 +4,6 @@ import { homeApi } from "./homeApi";
 
 import utilsReducer from "./utilsSlice";
 
-// import { rtkQueryErrorLogger } from "./middleware/RTKErrorLogger";
-
 const store = configureStore({
   reducer: {
     utils: utilsReducer,
@@ -13,7 +11,6 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(homeApi.middleware),
-  // .concat(rtkQueryErrorLogger),
 });
 
 export type AppDispatch = typeof store.dispatch;
