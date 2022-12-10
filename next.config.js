@@ -6,11 +6,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: false,
   images: {
-    domains: [
-      "bricks.axudastudio.com"
-    ],
+    domains: ["bricks.axudastudio.com"],
   },
-  
+  output: "standalone",
   i18n,
 };
 
