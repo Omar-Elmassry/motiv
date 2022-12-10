@@ -21,6 +21,7 @@ export default function SideNave({}: Props) {
   const t = useTranslation().t;
 
   const router = useRouter();
+  console.log("🚀 ~ file: SideNave.tsx:24 ~ SideNave ~ router", router);
   const { pathname, asPath, query } = router;
 
   const dispatch = useDispatch();
@@ -28,12 +29,12 @@ export default function SideNave({}: Props) {
   const links = [
     {
       title: t("common:dashboard"),
-      href: "dashboard",
+      href: "/",
       icon: <DashboardIcon />,
     },
-    { title: t("common:cars"), href: "cars", icon: <CarIcon /> },
-    { title: t("common:settings"), href: "settings", icon: <SettingsIcon /> },
-    { title: t("common:logout"), href: "logout", icon: <LogoutIcon /> },
+    { title: t("common:cars"), href: "/cars", icon: <CarIcon /> },
+    { title: t("common:settings"), href: "/settings", icon: <SettingsIcon /> },
+    { title: t("common:logout"), href: "/logout", icon: <LogoutIcon /> },
   ];
 
   const { smScreen, menuOpen } = useSelector((state: RootState) => {
@@ -74,9 +75,7 @@ export default function SideNave({}: Props) {
             <li
               key={`${index} ${link.href}`}
               className={`rounded-md  p-2 ${
-                router.pathname.startsWith(`/${link.href}`)
-                  ? "bg-greyBrand"
-                  : ""
+                router.pathname === link.href ? "bg-greyBrand" : ""
               }`}
             >
               <Link key={`${index} ${link.href}`} href={`/${link.href}`}>
@@ -95,7 +94,7 @@ export default function SideNave({}: Props) {
               className="flex items-center gap-2"
               onClick={handleLanguageChange}
             >
-              <GlobeAltIcon className="w-5 h-5" />
+              <GlobeAltIcon className="h-5 w-5" />
               {t("common:language")}
             </button>
           </li>
@@ -104,12 +103,10 @@ export default function SideNave({}: Props) {
             <li
               key={`${index} ${link.href}`}
               className={`rounded-md  p-2 ${
-                router.pathname.startsWith(`/${link.href}`)
-                  ? "bg-greyBrand"
-                  : ""
+                router.pathname === link.href ? "bg-greyBrand" : ""
               }`}
             >
-              <Link key={`${index} ${link.href}`} href={`/${link.href}`}>
+              <Link key={`${index} ${link.href}`} href={`${link.href}`}>
                 <a className="flex items-center gap-2">
                   {link.icon}
                   {link.title}
