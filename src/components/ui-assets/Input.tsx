@@ -6,9 +6,16 @@ type Props = {
   type?: string;
   placeholder?: string;
   icon?: ReactNode | StaticImageData;
+  onChangeFunc?: (val: string) => void;
 };
 
-export default function Input({ className, icon, type, placeholder }: Props) {
+export default function Input({
+  className,
+  icon,
+  type,
+  placeholder,
+  onChangeFunc,
+}: Props) {
   return (
     <div className={`${className} flex items-center gap-2`}>
       <>
@@ -19,6 +26,11 @@ export default function Input({ className, icon, type, placeholder }: Props) {
           } w-full bg-transparent px-2 placeholder:text-greyBrand-500`}
           type={type ?? "text"}
           placeholder={placeholder}
+          onChange={(e) => {
+            if (onChangeFunc) {
+              onChangeFunc(e.target.value);
+            }
+          }}
         />
       </>
     </div>

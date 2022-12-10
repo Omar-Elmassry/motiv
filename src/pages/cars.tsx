@@ -7,12 +7,14 @@ import Image from "next/image";
 import { useGetCarsQuery } from "src/store/homeApi";
 
 import CarCard from "@components/cars/CarsCard";
-// import DummyIcons from "@components/cars/DummyIcons";
+import DummyIcons from "@components/cars/DummyIcons";
 import Layout from "@components/layout/Layout";
 import FilterMenu from "@ui-assets/FilterMenu";
 import LoaderSpinner from "@ui-assets/LoaderSpinner";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useSelector } from "react-redux";
+import { RootState } from "src/store";
 
 const Cars: NextPageWithLayout<{}> = () => {
   const { t } = useTranslation();
@@ -20,37 +22,57 @@ const Cars: NextPageWithLayout<{}> = () => {
   const { data: carsData, isLoading } = useGetCarsQuery();
 
   const systemFilters = ["Manual", "Automatic"];
-  const vendorFilters = ["toyota", "porche", "mini couper"];
+  const vendorFilters = ["Toyota", "Porshe", "Mini Cooper"];
 
   const [systemFilter, setSystemFilter] = useState("");
   const [vendorFilter, setVendorFilter] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-  // const filterData = () => {
-  //   let data;
-  //   if (systemFilter) {
-  //     data = carsData.filter((car) => {
-  //       return car.system === systemFilter;
-  //     });
-  //   }
-  //   // setFilteredData(data);
-  // };
+  const filterData = () => {
+    let data = carsData.filter((car) => {
+      if (systemFilter && vendorFilter) {
+        //@ts-ignore
+        return car.system === systemFilter && car.name.includes(vendorFilter);
+      } else if (systemFilter && !vendorFilter) {
+        //@ts-ignore
+        return car.system === systemFilter;
+      } else if (!systemFilter && vendorFilter) {
+        //@ts-ignore
+        return car.name.includes(vendorFilter);
+      }
+    });
+
+    setFilteredData(data);
+  };
+
+  const searchInput = useSelector(
+    (state: RootState) => state.utils.searchInput
+  );
+
+  const searchData = () => {
+    let data = carsData.filter((car) => {
+      return car.name.toLowerCase().includes(searchInput.toLowerCase());
+    });
+    setFilteredData(data);
+  };
 
   useEffect(() => {
     if (carsData) {
-      let data;
-      if (systemFilter) {
-        data = carsData.filter((car) => {
-          return car.system === systemFilter;
-        });
-        setFilteredData(data);
-      }
+      setFilteredData(carsData);
     }
-  }, [systemFilter, vendorFilter, carsData]);
+  }, [carsData]);
 
-  // console.log(filteredData);
+  useEffect(() => {
+    if (searchInput) {
+      searchData();
+    }
+  }, [searchInput]);
 
-  // console.log("🚀 ~ file: cars.tsx:28 ~ filteredData", filteredData);
+  useEffect(() => {
+    if (systemFilter || vendorFilter) {
+      filterData();
+    }
+  }, [systemFilter, vendorFilter]);
 
   return (
     <div className="flex flex-grow flex-col space-y-7 p-5">
@@ -68,25 +90,27 @@ const Cars: NextPageWithLayout<{}> = () => {
               options={systemFilters}
               selected={systemFilter}
               setSelected={setSystemFilter}
+              filterName={"System"}
             />
             <FilterMenu
               options={vendorFilters}
               selected={vendorFilter}
               setSelected={setVendorFilter}
+              filterName={"Vendor"}
             />
 
             <button
               className="h-7 rounded-full border border-brand bg-white px-3 text-xs font-medium"
               onClick={() => {
-                setFilteredData([]);
+                setFilteredData(carsData);
                 setSystemFilter("");
                 setVendorFilter("");
               }}
             >
-              Clear Filters
+              Clear
             </button>
           </div>
-          {/* <DummyIcons /> */}
+          <DummyIcons />
         </div>
       </header>
 
@@ -99,18 +123,15 @@ const Cars: NextPageWithLayout<{}> = () => {
           ""
         )}
 
-        {carsData && filteredData.length === 0 ? (
+        {!isLoading && filteredData?.length !== 0 && (
           <div className="grid gap-6 grid-cols-fit-3">
-            {carsData.map((item, index) => {
+            {filteredData?.map((item, index) => {
               return <CarCard key={index} data={item} />;
             })}
           </div>
-        ) : (
-          <div className="grid gap-6 grid-cols-fit-3">
-            {filteredData.map((item, index) => {
-              return <CarCard key={index} data={item} />;
-            })}
-          </div>
+        )}
+        {!isLoading && filteredData?.length === 0 && (
+          <p className="">No data with current filters</p>
         )}
       </main>
     </div>

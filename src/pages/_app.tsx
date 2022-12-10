@@ -6,10 +6,11 @@ import { ReactElement, ReactNode, useEffect } from "react";
 import { Provider } from "react-redux";
 
 import store from "src/store";
-import AppUtils from "./AppUtils";
+// import AppUtils from "./AppUtils";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+import AppUtils from "@components/AppUtils";
 import "src/styles/globals.css";
 
 export type NextPageWithLayout<Props> = NextPage<Props> & {

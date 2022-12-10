@@ -19,7 +19,7 @@ export default function CarCard({ data }: Props) {
   const [liked, setLiked] = useState(false);
   return (
     <article
-      className={`group flex min-h-[236px] w-full flex-col rounded-xl bg-white p-5`}
+      className={`group flex min-h-[236px] w-full flex-col justify-between rounded-xl bg-white p-5`}
     >
       <div className="flex justify-between">
         <div className="">
@@ -39,7 +39,7 @@ export default function CarCard({ data }: Props) {
       <div className="relative my-3 flex h-auto w-full center-center lg:h-[170px] ">
         <Image src={data.img} alt={data.name} width={284} height={130} />
       </div>
-      <div className="flex justify-between text-[#72767C]">
+      <div className="flex justify-between text-greyBrand-500">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <Image

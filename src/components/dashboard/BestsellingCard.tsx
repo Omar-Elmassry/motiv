@@ -35,7 +35,7 @@ export default function BestsellingCard({ data }: Props) {
         <Image src={data.img} alt={data.name} width={354} height={120} />
       </div>
       <h3 className="mb-3 text-xl font-bold">{data.name}</h3>
-      <div className="flex justify-between text-[#72767C]">
+      <div className="flex justify-between text-greyBrand-500">
         <div className="flex items-center gap-4">
           <span className="flex gap-4">
             <Image

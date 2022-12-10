@@ -6,6 +6,7 @@ type utilsState = {
   scrolledTwoThirds: boolean;
   isSSR: boolean;
   menuOpened: boolean;
+  searchInput: string;
 };
 
 const initialState: utilsState = {
@@ -14,6 +15,7 @@ const initialState: utilsState = {
   scrolledTwoThirds: false,
   isSSR: true,
   menuOpened: false,
+  searchInput: "",
 };
 
 const utilsSlice = createSlice({
@@ -34,6 +36,9 @@ const utilsSlice = createSlice({
     },
     setMenuOpened(state, action) {
       state.menuOpened = action.payload;
+    },
+    setSearchInput(state, action) {
+      state.searchInput = action.payload;
     },
   },
 });

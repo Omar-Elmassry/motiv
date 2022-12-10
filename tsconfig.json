@@ -26,17 +26,6 @@
       "@components/*": ["./src/components/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@utils/*": ["./src/utils/*"],
-      "@react-tournament-brackets/*": ["./src/react-tournament-brackets/*"],
-
-      "Atoms/*": ["./src/react-tournament-brackets/src/atoms/*"],
-      "Components/*": ["./src/react-tournament-brackets/src/components/*"],
-      "Core/*": ["./src/react-tournament-brackets/src/core/*"],
-      "Hooks/*": ["./src/react-tournament-brackets/src/hooks/*"],
-      "Services/*": ["./src/react-tournament-brackets/src/services/*"],
-      "Stories/*": ["./src/react-tournament-brackets/src/stories/*"],
-      "Themes/*": ["./src/react-tournament-brackets/src/themes/*"],
-      "Styles/*": ["./src/react-tournament-brackets/src/styles/*"],
-      "Utils/*": ["./src/react-tournament-brackets/src/utils/*"]
     }
   },
   "include": [
@@ -45,6 +34,6 @@
     "**/*.tsx",
     "src/hooks/useScrollLock.ts"
   ],
-  "exclude": ["node_modules", "./src/react-tournament-brackets"],
-  "excludeFiles": ["./src/react-tournament-brackets/src/**/*"]
+  "exclude": ["node_modules"],
+
 }
