@@ -22,7 +22,9 @@ export default function Input({
         {icon}
         <input
           className={`${
-            icon ? "border-l border-l-[#EF9011]" : ""
+            icon
+              ? "ltr:border-l ltr:border-l-[#EF9011] rtl:border-r rtl:border-r-[#EF9011]"
+              : ""
           } w-full bg-transparent px-2 placeholder:text-greyBrand-500`}
           type={type ?? "text"}
           placeholder={placeholder}

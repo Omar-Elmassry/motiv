@@ -4,6 +4,7 @@ import Logo from "@icons/Logo";
 import SearchIcon from "@icons/SearchIcon";
 import userAvatar from "@PubImages/userAvatar.jpg";
 import Input from "@ui-assets/Input";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -14,6 +15,8 @@ import { utilsActions } from "src/store/utilsSlice";
 type Props = {};
 
 export default function Header({}: Props) {
+  const t = useTranslation().t;
+
   const router = useRouter();
   const dispatch = useDispatch();
   const [mobileSearch, setMobileSearch] = useState(false);
@@ -43,7 +46,7 @@ export default function Header({}: Props) {
             className="hidden w-full rounded-xl bg-greyBrand p-2 px-3 lg:flex"
             icon={<SearchIcon />}
             type={"text"}
-            placeholder="Search or type"
+            placeholder={t("common:search")}
             onChangeFunc={(val) => dispatch(utilsActions.setSearchInput(val))}
           />
         </div>
@@ -76,7 +79,7 @@ export default function Header({}: Props) {
           className="mt-2 w-full rounded-xl bg-greyBrand p-2 px-3 lg:hidden"
           icon={<SearchIcon />}
           type={"text"}
-          placeholder="Search or type"
+          placeholder={t("common:search")}
           onChangeFunc={(val) => dispatch(utilsActions.setSearchInput(val))}
         />
       )}

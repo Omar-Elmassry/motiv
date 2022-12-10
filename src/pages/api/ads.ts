@@ -1,10 +1,10 @@
-import { adds } from "src/mockApi/data";
+import { adds, responseDelay } from "src/mockApi/data";
 
 export default async function handler(req, res) {
   try {
     await setTimeout(() => {
       return res.json(adds);
-    }, 3000);
+    }, responseDelay);
   } catch (error) {
     return res.json("error happened please try again later");
   }

@@ -29,7 +29,7 @@ const Dashboard: NextPageWithLayout<{}> = () => {
   return (
     <div className="flex flex-grow">
       <Head>
-        <title>Dashboard | Motiv.</title>
+        <title>{t("common:dashboard")} | Motiv</title>
         <meta name="description" content="Dashboard" />
       </Head>
 
@@ -70,6 +70,16 @@ const Dashboard: NextPageWithLayout<{}> = () => {
 
 Dashboard.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ["common"])),
+    },
+  };
 };
 
 export default Dashboard;

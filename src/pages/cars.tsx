@@ -77,12 +77,12 @@ const Cars: NextPageWithLayout<{}> = () => {
   return (
     <div className="flex flex-grow flex-col space-y-7 p-5">
       <Head>
-        <title>Cars | Motiv.</title>
+        <title>{t("common:cars")} | Motiv</title>
         <meta name="description" content="Cars" />
       </Head>
 
       <header className=" space-y-4">
-        <h2 className="text-3xl font-bold">Booking</h2>
+        <h2 className="text-3xl font-bold">{t("common:booking")}</h2>
 
         <div className="flex justify-between">
           <div className="flex items-center gap-3">
@@ -90,13 +90,13 @@ const Cars: NextPageWithLayout<{}> = () => {
               options={systemFilters}
               selected={systemFilter}
               setSelected={setSystemFilter}
-              filterName={"System"}
+              filterName={t("common:system")}
             />
             <FilterMenu
               options={vendorFilters}
               selected={vendorFilter}
               setSelected={setVendorFilter}
-              filterName={"Vendor"}
+              filterName={t("common:vendor")}
             />
 
             <button
@@ -107,7 +107,7 @@ const Cars: NextPageWithLayout<{}> = () => {
                 setVendorFilter("");
               }}
             >
-              Clear
+              {t("common:clear")}
             </button>
           </div>
           <DummyIcons />
@@ -140,6 +140,16 @@ const Cars: NextPageWithLayout<{}> = () => {
 
 Cars.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ["common"])),
+    },
+  };
 };
 
 export default Cars;

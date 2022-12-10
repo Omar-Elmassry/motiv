@@ -12,9 +12,7 @@ export default function Layout({ children }: Props) {
       <SideNave />
       <div className="flex flex-grow flex-col bg-red-700">
         <Header />
-        <div className="flex flex-grow overflow-scroll bg-greyBrand">
-          {children}
-        </div>
+        <div className="flex flex-grow bg-greyBrand">{children}</div>
       </div>
     </div>
   );

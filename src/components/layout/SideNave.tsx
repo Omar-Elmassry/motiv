@@ -1,9 +1,11 @@
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import CarIcon from "@icons/CarIcon";
 import DashboardIcon from "@icons/DashboardIcon";
 import Logo from "@icons/Logo";
 import LogoutIcon from "@icons/LogoutIcon";
 import SettingsIcon from "@icons/SettingsIcon";
+import { setCookie } from "cookies-next";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,14 +21,19 @@ export default function SideNave({}: Props) {
   const t = useTranslation().t;
 
   const router = useRouter();
+  const { pathname, asPath, query } = router;
 
   const dispatch = useDispatch();
 
   const links = [
-    { title: t("dashboard"), href: "dashboard", icon: <DashboardIcon /> },
-    { title: t("cars"), href: "cars", icon: <CarIcon /> },
-    { title: t("settings"), href: "settings", icon: <SettingsIcon /> },
-    { title: t("logout"), href: "logout", icon: <LogoutIcon /> },
+    {
+      title: t("common:dashboard"),
+      href: "dashboard",
+      icon: <DashboardIcon />,
+    },
+    { title: t("common:cars"), href: "cars", icon: <CarIcon /> },
+    { title: t("common:settings"), href: "settings", icon: <SettingsIcon /> },
+    { title: t("common:logout"), href: "logout", icon: <LogoutIcon /> },
   ];
 
   const { smScreen, menuOpen } = useSelector((state: RootState) => {
@@ -42,6 +49,14 @@ export default function SideNave({}: Props) {
       menuOpen ? (classes = "sideMenu opened") : (classes = "sideMenu");
     }
     return classes;
+  };
+
+  const handleLanguageChange = async () => {
+    setCookie("NEXT_LOCALE", router.locale === "en" ? "ar" : "en");
+    await router.push({ pathname, query }, asPath, {
+      locale: router.locale === "en" ? "ar" : "en",
+    });
+    router.reload();
   };
 
   return (
@@ -75,6 +90,16 @@ export default function SideNave({}: Props) {
         </ul>
 
         <ul className="mt-auto font-medium capitalize text-greyBrand-500">
+          <li className={`rounded-md  p-2 `}>
+            <button
+              className="flex items-center gap-2"
+              onClick={handleLanguageChange}
+            >
+              <GlobeAltIcon className="w-5 h-5" />
+              {t("common:language")}
+            </button>
+          </li>
+
           {links.slice(2).map((link, index) => (
             <li
               key={`${index} ${link.href}`}

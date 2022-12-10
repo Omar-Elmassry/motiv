@@ -190,3 +190,5 @@ export const bestSellingCars = [
     bg: "#F4E3E5",
   },
 ];
+
+export const responseDelay = 1500;
